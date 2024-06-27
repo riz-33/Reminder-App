@@ -15,5 +15,12 @@ body {
 .heading {
     color: #080808;
     text-align: center;
-    padding: 5px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.container-fluid {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
