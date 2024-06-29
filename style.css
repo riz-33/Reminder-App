@@ -88,26 +88,28 @@ body {
 
 .para {
     position: relative;
+    margin-top: 2%;
+    font-weight: 700;
 }
 
-.para::before {
+/* .para::before {
     position: absolute;
     content: "";
     display: block;
-    width: 140px;
+    width: 95px;
     height: 2px;
     background: #080808;
-    left: 0%;
+    left: -45%;
     top: 50%;
 }
 
-..para::before {
+.para::after {
     position: absolute;
     content: "";
     display: block;
-    width: 140px;
+    width: 95px;
     height: 2px;
     background: #080808;
-    right: 0%;
+    right: -45%;
     top: 50%;
-}
+} */
