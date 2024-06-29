@@ -14,9 +14,8 @@ body {
 
 .heading {
     color: #080808;
-    text-align: center;
-    padding-top: 20px;
-    padding-bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 .container-fluid {
@@ -25,10 +24,90 @@ body {
     flex-direction: column;
 }
 
-.btn-primary{
+.btn-primary {
     padding: 5px 50px !important;
     background-color: #e2bc4f !important;
     color: #080808 !important;
     font-weight: 700 !important;
     font-size: large;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.input-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.icon {
+    padding: 15px;
+    background: #e2bc4f;
+    color: #080808;
+    min-width: 50px;
+    text-align: center;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+}
+
+.input-field:focus {
+    border: 2px solid #e2bc4f;
+}
+
+.btn {
+    background-color: #e2bc4f !important;
+    color: #080808 !important;
+    margin-top: 10px;
+    padding: 10px !important;
+    border: none !important;
+    cursor: pointer;
+    width: 50% !important;
+    opacity: 0.9 !important;
+    font-weight: 700 !important;
+}
+
+.btn:hover {
+    opacity: 1 !important;
+}
+
+.google {
+    width: 40px;
+    height: 40px;
+}
+
+.facebook {
+    width: 40px;
+    height: 33px;
+}
+
+.para {
+    position: relative;
+}
+
+.para::before {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 140px;
+    height: 2px;
+    background: #080808;
+    left: 0%;
+    top: 50%;
+}
+
+..para::before {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 140px;
+    height: 2px;
+    background: #080808;
+    right: 0%;
+    top: 50%;
 }
