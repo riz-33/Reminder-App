@@ -1,0 +1,23 @@
+@font-face {
+    font-family: RobotoSlab;
+    src: url(Font/RobotoSlab-Regular.ttf);
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: RobotoSlab;
+    
+}
+
+.header{
+    background-image: url(Images/Banner.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    opacity: 0.3;
+}
