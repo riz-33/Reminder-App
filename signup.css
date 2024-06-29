@@ -24,3 +24,11 @@ body {
     align-items: center;
     flex-direction: column;
 }
+
+.btn-primary{
+    padding: 5px 50px !important;
+    background-color: #e2bc4f !important;
+    color: #080808 !important;
+    font-weight: 700 !important;
+    font-size: large;
+}
