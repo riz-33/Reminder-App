@@ -4,7 +4,6 @@
 }
 
 * {
-    /* box-sizing: border-box; */
     margin: 0%;
     padding: 0%;
 }
@@ -14,15 +13,8 @@ body {
     background-color: floralwhite;
 }
 
-.header {
-    /* width: 100%; */
-    /* text-align: center; */
-    /* align-items: center; */
-}
-
 .heading {
     text-align: center;    
-    /* position: relative; */
     padding-top: 30px;
     font-weight: bolder;
     font-size: large;
