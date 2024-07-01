@@ -21,20 +21,20 @@
 
         <div class="input-container">
             <i class="fa fa-envelope icon"></i>
-            <input class="input-field" type="text" placeholder="Email" name="email">
+            <input id="email" class="input-field" type="text" placeholder="Email" name="email">
         </div>
 
         <div class="input-container">
             <i class="fa fa-key icon"></i>
-            <input class="input-field" type="password" placeholder="Password" name="psw">
+            <input id="password" class="input-field" type="password" placeholder="Password" name="psw">
         </div>
 
         <div class="input-container">
             <i class="fa fa-key icon"></i>
-            <input class="input-field" type="password" placeholder="Confirm Password" name="cpsw">
+            <input id="confirmPassword" class="input-field" type="password" placeholder="Confirm Password" name="cpsw">
         </div>
 
-        <button type="submit" class="btn">Register</button>
+        <button onclick="registrationForm()" type="submit" class="btn">Register</button>
     </div>
 
     <div class="container-fluid col-10 col-sm-8 col-md-6 col-lg-4">
@@ -45,6 +45,8 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="signup.js"></script>
 
 </body>
 
