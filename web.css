@@ -13,22 +13,41 @@ body {
     background-color: floralwhite;
 }
 
-.heading {
-    text-align: center;    
-    padding-top: 30px;
-    font-weight: bolder;
-    font-size: large;
+.container-fluid1 {
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: space-between;
 }
 
-
-.image {
-    position: absolute;
-    margin-inline: 1px;
-    margin-top: 2px;
+.navbar {
+    background-color: #f5e7bd !important;
 }
 
-.image>img {
-    opacity: 0.3;
-    height: 200px;
-    width: 227%;
+.navbar-brand {
+    color: #080808 !important;
+    margin-left: 10%;
+}
+
+.btn {
+    background-color: #e2bc4f !important;
+    color: #080808 !important;
+    margin-top: 10px;
+    margin-right: 10%;
+    margin-bottom: 7%;
+    padding: 5px 20px;
+    border: none !important;
+    cursor: pointer;
+    width: 150px !important;
+    opacity: 0.9 !important;
+    font-weight: 700 !important;
+}
+
+.btn:hover {
+    opacity: 1 !important;
+}
+
+.btn:active {
+    background-color: #080808 !important;
+    color: #e2bc4f !important;
 }
