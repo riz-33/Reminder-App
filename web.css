@@ -13,29 +13,26 @@ body {
     background-color: floralwhite;
 }
 
-.container-fluid1 {
-    display: flex;
-    flex-wrap: inherit;
-    align-items: center;
-    justify-content: space-between;
+.logo {
+    margin-left: 10%;
+    color: #e2bc4f !important;
+}
+
+.heading {
+    font-weight: 800;
+    color: #e2bc4f;
+    
 }
 
 .navbar {
-    background-color: #f5e7bd !important;
-}
-
-.navbar-brand {
-    color: #080808 !important;
-    margin-left: 10%;
+    background-color: #080808 !important;
 }
 
 .btn {
     background-color: #e2bc4f !important;
     color: #080808 !important;
-    margin-top: 10px;
     margin-right: 10%;
-    margin-bottom: 7%;
-    padding: 5px 20px;
+    padding: 1px;
     border: none !important;
     cursor: pointer;
     width: 150px !important;
@@ -50,4 +47,17 @@ body {
 .btn:active {
     background-color: #080808 !important;
     color: #e2bc4f !important;
+}
+
+.content{
+    background-image: url(Images/Banner.jpg);
+    opacity: 0.1;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 3%;
+}
+
+.time{
+    color: black !important;
 }
