@@ -51,17 +51,17 @@ body {
 
 .content {
     height: 100vh;
-     margin-top: 3%;
+    margin-top: 3%;
     padding-top: 10px;
     text-align: center;
 }
 
 .time {
     color: #080808;
-    opacity: 1 !important;
+    /* opacity: 1 !important; */
 
 }
 
-.table{
+.table {
     justify-content: center;
 }
