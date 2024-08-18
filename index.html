@@ -15,35 +15,68 @@
 </head>
 
 <body>
-    <img class="banner" src="Images/Banner.jpg" alt="">
-    
-    <div class="container-fluid col-10 col-sm-8 col-md-6 col-lg-4">
-        <h2 class="heading">Prayer App</h2>
-
-        <div class="input-container">
-            <i class="fa fa-envelope icon"></i>
-            <input id="email" class="input-field" type="text" placeholder="Email" name="email">
+    <nav class="navbar bg-body-tertiary fixed-top">
+        <div class="container-fluid1">
+            <a class="navbar-brand" href="/index.html">
+                <img src="Images/Logo.webp" alt="Logo" width="30" height="24"
+                    class="logo d-inline-block align-text-top">
+                Prayer App
+            </a>
         </div>
+        <h4 class="heading"></h4>
+    </nav>
 
-        <div class="input-container">
-            <i class="fa fa-key icon"></i>
-            <input id="password" class="input-field" type="password" placeholder="Password" name="psw">
-        </div>
-
-        <button onclick="loginForm()" type="submit" class="btn">Login</button>
+    <div class="content">
+        <h3 id="time" class="time"></h3>
+        <h5 id="date" class="date"></h5>
+        <h5 id="hijriDate" class="date"></h5>
+        <h5 id="day" class="day"></h5>
     </div>
 
-    <div class="container-fluid col-10 col-sm-8 col-md-6 col-lg-4">
-        <p class="para"><span>Don't have an account? <a href="signup.html">Register Now</a></span></p>
-        <div class="social">
-            <!-- <i><img class="google" src="Images/google.png" alt=""></i> -->
-            <!-- <i><img class="facebook" src="Images/facebook.png" alt=""></i> -->
+    <div class="row">
+        <div class="col-1 col-md-2 col-lg-3"></div>
+        <div class="table-div col-10 col-sm-10 col-md-8 col-lg-6">
+            <table class="table">
+                <tr>
+                    <th>Namaz</th>
+                    <th>Time</th>
+                </tr>
+
+                <tr">
+                    <td>Fajr</td>
+                    <td id="fajr"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Sunrise</td>
+                        <td id="sunrise"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Zuhr</td>
+                        <td id="dhuhr"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Asr</td>
+                        <td id="asr"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Maghrib</td>
+                        <td id="maghrib"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Isha</td>
+                        <td id="isha"></td>
+                    </tr>
+            </table>
         </div>
+        <div class="col-1 col-md-2 col-lg-3"></div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="login.js"></script>
-
+    <script src="app.js"></script>
 </body>
 
 </html>
