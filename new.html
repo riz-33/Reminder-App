@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayer App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f5ec;
+            color: #333;
+            text-align: center;
+        }
+
+        .header {
+            background-color: #000;
+            padding: 10px;
+        }
+
+        .header h1 {
+            color: #fcb045;
+            margin: 0;
+        }
+
+        .time-container {
+            margin-top: 20px;
+            font-size: 24px;
+            line-height: 1.5;
+        }
+
+        .time-container h2 {
+            font-size: 48px;
+            margin: 0;
+        }
+
+        .prayer-table {
+            margin: 20px auto;
+            width: 50%;
+            border-collapse: collapse;
+        }
+
+        .prayer-table th,
+        .prayer-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .prayer-table th {
+            background-color: #fcb045;
+            color: #000;
+            font-size: 18px;
+        }
+
+        .prayer-table td {
+            background-color: #fff;
+            color: #333;
+        }
+
+        .prayer-table td:first-child {
+            font-weight: bold;
+        }
+
+        .input-container {
+            margin-top: 20px;
+        }
+
+        .input-container label {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        .input-container input[type="date"] {
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        .input-container button {
+            padding: 5px 10px;
+            font-size: 16px;
+            background-color: #fcb045;
+            border: none;
+            cursor: pointer;
+            color: #000;
+            margin-left: 10px;
+        }
+
+        .navigator {
+            margin-top: 20px;
+        }
+
+        .navigator button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #fcb045;
+            border: none;
+            cursor: pointer;
+            color: #000;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Prayer App</h1>
+    </div>
+
+    <div class="time-container">
+        <h2 id="currentTime">--:--:-- AM/PM</h2>
+        <p id="currentDate">Loading date...</p>
+        <p id="islamicDate">Loading Islamic date...</p>
+    </div>
+
+    <div class="input-container">
+        <label for="dateInput">Select a Date:</label>
+        <input type="date" id="dateInput" onchange="onDateChange()">
+    </div>
+
+    <div class="navigator">
+        <button onclick="navigateDate(-1)">Previous</button>
+        <span id="selectedDate">No date selected</span>
+        <button onclick="navigateDate(1)">Next</button>
+    </div>
+
+    <table class="prayer-table">
+        <thead>
+            <tr>
+                <th>Namaz</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody id="prayerTimesList">
+            <!-- Prayer times will be injected here -->
+        </tbody>
+    </table>
+
+    <script>
+        const latitude = 40.7128; // Set your latitude
+        const longitude = -74.0060; // Set your longitude
+        const method = 2; // ISNA method
+        let selectedDate = new Date();
+
+        function getPrayerTimes() {
+            const formattedDate = selectedDate.toISOString().split('T')[0];
+            let apiUrl = `https://api.aladhan.com/v1/timings/${formattedDate}?latitude=24.8607&longitude=67.0011&method=1&school=1`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    displayPrayerTimes(data.data.timings);
+                    document.getElementById('selectedDate').textContent = selectedDate.toDateString();
+                })
+                .catch(error => console.error("Error fetching prayer times:", error));
+        }
+
+        function displayPrayerTimes(timings) {
+            const prayerTimesList = document.getElementById("prayerTimesList");
+            prayerTimesList.innerHTML = '';
+
+            for (const prayer in timings) {
+                let row = document.createElement("tr");
+                let prayerName = document.createElement("td");
+                prayerName.textContent = prayer;
+                let prayerTime = document.createElement("td");
+                prayerTime.textContent = timings[prayer];
+                row.appendChild(prayerName);
+                row.appendChild(prayerTime);
+                prayerTimesList.appendChild(row);
+            }
+        }
+
+        function onDateChange() {
+            const dateInput = document.getElementById('dateInput').value;
+            selectedDate = new Date(dateInput);
+            getPrayerTimes();
+        }
+
+        function navigateDate(days) {
+            selectedDate.setDate(selectedDate.getDate() + days);
+            document.getElementById('dateInput').value = selectedDate.toISOString().split('T')[0];
+            getPrayerTimes();
+        }
+
+        function updateCurrentTime() {
+            const currentTime = new Date().toLocaleTimeString();
+            document.getElementById('currentTime').textContent = currentTime;
+        }
+
+        function updateCurrentDate() {
+            const currentDate = new Date().toLocaleDateString('en-GB', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+                weekday: 'long'
+            });
+            document.getElementById('currentDate').textContent = currentDate;
+        }
+
+        async function updateIslamicDate() {
+            const response = await fetch('https://api.aladhan.com/v1/gToH?date=' + new Date().toLocaleDateString('en-GB'));
+            const data = await response.json();
+            const islamicDate = data.data.hijri.date + ' ' + data.data.hijri.month.en + ' ' + data.data.hijri.year;
+            document.getElementById('islamicDate').textContent = islamicDate;
+        }
+
+        window.onload = function () {
+            updateCurrentTime();
+            updateCurrentDate();
+            updateIslamicDate();
+            getPrayerTimes();
+            setInterval(updateCurrentTime, 1000); // Update time every second
+        }
+    </script>
+</body>
+
+</html>

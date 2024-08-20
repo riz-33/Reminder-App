@@ -25,44 +25,42 @@ setInterval(() => {
     time.textContent = hours + " : " + mins + " : " + secs + " " + period;
 });
 
-const apiEndpoint = 'https://api.aladhan.com/v1/timingsByCity?city=Karachi&country=Pakistan&method=1&school=1';
+let selectedDate = new Date();
 
-async function getPrayerTimes() {
-    try {
-        const response = await fetch(apiEndpoint);
-        if (!response.ok) {
-            throw new Error('Failed to fetch prayer times');
-        }
-        const data = await response.json();
-        console.log(data);
-        displayPrayerTimes(data.data.timings);
-        displayDate(data.data.date.gregorian);
-        displayIslamicDate(data.data.date.hijri);
-    } catch (error) {
-        console.error('Error:', error);
-    }
+function getPrayerTimes() {
+    const formattedDate = selectedDate.toISOString().split('T')[0];
+    let apiUrl = `https://api.aladhan.com/v1/timings/${formattedDate}?latitude=24.8607&longitude=67.0011&method=1&school=1`;
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            displayPrayerTimes(data.data.timings);
+            // displayDate(data.data.date.gregorian);
+            // displayIslamicDate(data.data.date.hijri);
+            document.getElementById('selectedDate').textContent = selectedDate.toDateString();
+        })
+        .catch(error => console.error("Error fetching prayer times:", error));
 }
 
-function displayDate(gregorianDate) {
-    const day = gregorianDate.day;
-    const month = gregorianDate.month.en;
-    const year = gregorianDate.year;
-    const weekday = gregorianDate.weekday.en;
-    const formattedDate = `${day} ${month} ${year}`;
-    const formattedDay = weekday;
+// function displayDate(gregorianDate) {
+//     const day = gregorianDate.day;
+//     const month = gregorianDate.month.en;
+//     const year = gregorianDate.year;
+//     const weekday = gregorianDate.weekday.en;
+//     const formattedDate = `${day} ${month} ${year}`;
+//     const formattedDay = weekday;
 
-    document.getElementById('date').textContent = formattedDate;
-    document.getElementById('day').textContent = formattedDay;
-}
+//     document.getElementById('date').textContent = formattedDate;
+//     document.getElementById('day').textContent = formattedDay;
+// }
 
-function displayIslamicDate(hijriDate) {
-    const day = hijriDate.day;
-    const month = hijriDate.month.en;
-    const year = hijriDate.year;
-    const formattedDate = `${day} ${month} ${year}`;
-    
-    document.getElementById('hijriDate').textContent = formattedDate;
-}
+// function displayIslamicDate(hijriDate) {
+//     const day = hijriDate.day;
+//     const month = hijriDate.month.en;
+//     const year = hijriDate.year;
+//     const formattedDate = `${day} ${month} ${year}`;
+
+//     document.getElementById('hijriDate').textContent = formattedDate;
+// }
 
 function displayPrayerTimes(timings) {
     function convertTo12Hour(time) {
@@ -85,25 +83,60 @@ function displayPrayerTimes(timings) {
     document.getElementById('isha').textContent = convertTo12Hour(timings.Isha);
 }
 
-getPrayerTimes();
+function onDateChange() {
+    const dateInput = document.getElementById('dateInput').value;
+    selectedDate = new Date(dateInput);
+    getPrayerTimes();
+}
 
-// const date = document.querySelector('#date');
-// const day = document.querySelector('#day');
+function navigateDate(days) {
+    selectedDate.setDate(selectedDate.getDate() + days);
+    document.getElementById('dateInput').value = selectedDate.toISOString().split('T')[0];
+    getPrayerTimes();
+    updateIslamicDate();
+}
 
-// let rightNow = new Date();
-// let dayName = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-// let monthName = ["January", "February", "March", "April", "May", "June", "July",
-//     "August", "September", "October", "November", "December"]
-
-// let today = rightNow.getDate();
-// let month = rightNow.getMonth();
-// let year = rightNow.getFullYear();
-// let days = rightNow.getDay();
-
-// if (today < 10) {
-//     today = "0" + today
+// function updateCurrentDate() {
+//     const currentDate = new Date().toLocaleDateString('en-GB', {
+//         day: 'numeric',
+//         month: 'long',
+//         year: 'numeric',
+//     });
+//     document.getElementById('date').textContent = currentDate;
 // }
 
-// date.textContent = today + " " + monthName[month] + " " + year;
-// day.textContent = dayName[days];
+function updateCurrentDay() {
+    const currentDay = new Date().toLocaleDateString('en-GB', {
+        weekday: 'long'
+    });
+    document.getElementById('day').textContent = currentDay;
+}
 
+function updateIslamicDate() {
+    const day = selectedDate.getDate();
+    const month = selectedDate.getMonth() + 1;
+    const year = selectedDate.getFullYear();
+
+    fetch(`https://api.aladhan.com/v1/gToH?date=${day}-${month}-${year}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.data && data.data.hijri) {
+                const hijriDate = data.data.hijri;
+                const islamicDateStr = `${hijriDate.day} ${hijriDate.month.en} ${hijriDate.year}`;
+                document.getElementById('hijriDate').textContent = islamicDateStr;
+            } else {
+                document.getElementById('hijriDate').textContent = 'Error fetching Islamic date';
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching Islamic date:", error);
+            document.getElementById('hijriDate').textContent = 'Error fetching Islamic date';
+        });
+}
+
+window.onload = function () {
+    // updateCurrentDate();
+    updateCurrentDay()
+    updateIslamicDate()
+    getPrayerTimes();
+}
