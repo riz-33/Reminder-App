@@ -11,12 +11,10 @@
 body {
     font-family: RobotoSlab;
     background-color: floralwhite;
-    /* width: 100%; */
-    background-repeat: no-repeat;
 }
 
 .bg-image {     
-    background-image: url(Images/bg-image.webp);
+    background-image: url(Images/bg-image.jpg);
     position: fixed;
     z-index: -1;
     background-repeat: no-repeat;
@@ -24,11 +22,11 @@ body {
     display: block;
     width: 1350px;
     height: 600px;
-    -webkit-filter: blur(5px);
-    -moz-filter: blur(5px);
-    -o-filter: blur(5px);
-    -ms-filter: blur(5px);
-    filter: blur(5px);
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
+    filter: blur(2px);
 }
 
 .logo {
@@ -75,6 +73,11 @@ body {
     text-align: center;
 }
 
+.input-container{
+    margin-top: 20px;
+    text-align: center;
+}
+
 .table {
     margin-top: 30px;
     text-align: center;
@@ -82,4 +85,68 @@ body {
 
 .period {
     font-size: medium;
+}
+
+.date{
+    font-weight: 500;
+    font-size: 25px;
+}
+
+.selected-name{
+    border-top: 2px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    font-weight: 800;
+    font-size: large;
+    color:black !important;
+    background-color: #e2bc4f !important;
+}
+
+.selected-time{
+    border-top: 2px solid black;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    font-size: large;
+    font-weight: 800;
+    color:black !important;
+    background-color: #e2bc4f !important;
+}
+
+.arrow{
+    border: none;
+    font-size: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    background-color: transparent;
+}
+
+.table{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    font-weight: 300;
+    border-radius: 50%;
+}
+
+.dateInput{
+    border-radius: 50px;
+    text-align: center;
+}
+
+.input-container{
+    font-weight: 600;
+}
+
+.current-prayer {
+    background-color: #fcb045 !important;
+    color: #000;
+    font-weight: bold;
+    font-size: large;
+    border-top: 2px solid rgb(161, 28, 28);
+    border-bottom: 2px solid rgb(161, 28, 28);
+    border-right: 2px solid rgb(161, 28, 28);
+    border-left: 2px solid rgb(161, 28, 28);
+
 }

@@ -26,67 +26,63 @@
         <h4 class="heading"></h4>
     </nav>
 
-    <!-- <div class="bg-image">image</div> -->
-
     <div class="namazApp">
         <div class="content">
+            <!-- <div class="bg-image"></div> -->
             <h2 id="time" class="time"></h2>
-            <button onclick="navigateDate(-1)">Previous</button>
+            <button class="arrow" onclick="navigateDate(-1)"><i class="fa-solid fa-circle-chevron-left"></i></button>
             <span class="date" id="selectedDate">No date selected</span>
-            <button onclick="navigateDate(1)">Next</button>
-            <!-- <h5 id="date" class="date"></h5> -->
+            <button class="arrow" onclick="navigateDate(1)"><i class="fa-solid fa-circle-chevron-right"></i></button>
             <h5 id="hijriDate" class="date"></h5>
-            <h5 id="day" class="day"></h5>
+            <!-- <h5 id="day" class="day"></h5> -->
+            <div class="input-container">
+                <label for="dateInput">Select a Date </label>
+                <input class="dateInput" type="date" id="dateInput" onchange="onDateChange()">
+            </div>
         </div>
-        <div class="content input-container">
-            <label for="dateInput">Select a Date</label>
-            <input type="date" id="dateInput" onchange="onDateChange()">
-        </div>
-    
-        <div class="content navigator">
-        </div>
-    
-        <div class="row">
-            <div class="col-1 col-md-2 col-lg-3"></div>
-            <div class="table-div col-10 col-sm-10 col-md-8 col-lg-6">
-                <table class="table">
-                    <tr>
-                        <th>Namaz</th>
-                        <th>Time</th>
-                    </tr>
 
-                    <tr">
-                        <td>Fajr</td>
-                        <td id="fajr"></td>
+            <div class="row">
+                <div class="col-1 col-md-2 col-lg-3"></div>
+                <div class="table-div col-10 col-sm-10 col-md-8 col-lg-6">
+                    <table class="table">
+                        <tr>
+                            <th class="heading">Namaz</th>
+                            <th class="heading">Time</th>
                         </tr>
 
-                        <tr>
+                        <tr id="fajr-row">
+                            <td>Fajr</td>
+                            <td id="fajr"></td>
+                        </tr>
+
+                        <tr id="sunrise-row">
                             <td>Sunrise</td>
                             <td id="sunrise"></td>
                         </tr>
 
-                        <tr>
+                        <tr id="dhuhr-row">
                             <td>Zuhr</td>
                             <td id="dhuhr"></td>
                         </tr>
 
-                        <tr>
+                        <tr id="asr-row">
                             <td>Asr</td>
                             <td id="asr"></td>
                         </tr>
 
-                        <tr>
+                        <tr id="maghrib-row">
                             <td>Maghrib</td>
                             <td id="maghrib"></td>
                         </tr>
 
-                        <tr>
+                        <tr id="isha-row">
                             <td>Isha</td>
                             <td id="isha"></td>
                         </tr>
-                </table>
+                    </table>
+                </div>
+                <div class="col-1 col-md-2 col-lg-3"></div>
             </div>
-            <div class="col-1 col-md-2 col-lg-3"></div>
         </div>
     </div>
 

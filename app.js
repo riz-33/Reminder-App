@@ -34,33 +34,10 @@ function getPrayerTimes() {
         .then(response => response.json())
         .then(data => {
             displayPrayerTimes(data.data.timings);
-            // displayDate(data.data.date.gregorian);
-            // displayIslamicDate(data.data.date.hijri);
             document.getElementById('selectedDate').textContent = selectedDate.toDateString();
         })
         .catch(error => console.error("Error fetching prayer times:", error));
 }
-
-// function displayDate(gregorianDate) {
-//     const day = gregorianDate.day;
-//     const month = gregorianDate.month.en;
-//     const year = gregorianDate.year;
-//     const weekday = gregorianDate.weekday.en;
-//     const formattedDate = `${day} ${month} ${year}`;
-//     const formattedDay = weekday;
-
-//     document.getElementById('date').textContent = formattedDate;
-//     document.getElementById('day').textContent = formattedDay;
-// }
-
-// function displayIslamicDate(hijriDate) {
-//     const day = hijriDate.day;
-//     const month = hijriDate.month.en;
-//     const year = hijriDate.year;
-//     const formattedDate = `${day} ${month} ${year}`;
-
-//     document.getElementById('hijriDate').textContent = formattedDate;
-// }
 
 function displayPrayerTimes(timings) {
     function convertTo12Hour(time) {
@@ -69,19 +46,60 @@ function displayPrayerTimes(timings) {
         const ampm = hours >= 12 ? 'PM' : 'AM';
         hours = hours % 12 || 12;
         if (hours < 10) {
-            hours = "0" + hours
+            hours = "0" + hours;
         }
         return `${hours} : ${minutes} ${ampm}`;
-
     }
 
-    document.getElementById('fajr').textContent = convertTo12Hour(timings.Fajr);
-    document.getElementById('sunrise').textContent = convertTo12Hour(timings.Sunrise);
-    document.getElementById('dhuhr').textContent = convertTo12Hour(timings.Dhuhr);
-    document.getElementById('asr').textContent = convertTo12Hour(timings.Asr);
-    document.getElementById('maghrib').textContent = convertTo12Hour(timings.Maghrib);
-    document.getElementById('isha').textContent = convertTo12Hour(timings.Isha);
+    // Helper function to get time in a comparable format
+    function getTimeComparable(time) {
+        let [hours, minutes] = time.split(':');
+        return parseInt(hours) * 60 + parseInt(minutes);
+    }
+
+    // Get current time in comparable format
+    const currentTime = new Date();
+    const currentMinutes = currentTime.getHours() * 60 + currentTime.getMinutes();
+
+    // Define elements for prayer times
+    const prayerTimes = {
+        'fajr': timings.Fajr,
+        'sunrise': timings.Sunrise,
+        'dhuhr': timings.Dhuhr,
+        'asr': timings.Asr,
+        'maghrib': timings.Maghrib,
+        'isha': timings.Isha
+    };
+
+    // Array to hold prayer times in a structured format
+    let prayers = [];
+    for (const [key, time] of Object.entries(prayerTimes)) {
+        prayers.push({ id: key, time: getTimeComparable(time) });
+    }
+
+    // Iterate over each prayer time to set the text content
+    for (const [key, time] of Object.entries(prayerTimes)) {
+        const element = document.getElementById(key);
+        element.textContent = convertTo12Hour(time);
+        element.parentElement.classList.remove('current-prayer'); // Reset the highlight class
+    }
+
+    // Find the current prayer
+    for (let i = 0; i < prayers.length; i++) {
+        const currentPrayer = prayers[i];
+        const nextPrayer = prayers[i + 1] || prayers[0]; // Wrap around after Isha to Fajr
+
+        if (currentMinutes >= currentPrayer.time && currentMinutes < nextPrayer.time) {
+            // Highlight the current prayer
+            document.getElementById(currentPrayer.id).parentElement.classList.add('current-prayer');
+            return; // Exit once the current prayer is found and highlighted
+        }
+    }
+
+    // If no prayer is found (current time is before Fajr), highlight Isha as the previous prayer
+    document.getElementById('isha').parentElement.classList.add('current-prayer');
 }
+
 
 function onDateChange() {
     const dateInput = document.getElementById('dateInput').value;
@@ -94,22 +112,6 @@ function navigateDate(days) {
     document.getElementById('dateInput').value = selectedDate.toISOString().split('T')[0];
     getPrayerTimes();
     updateIslamicDate();
-}
-
-// function updateCurrentDate() {
-//     const currentDate = new Date().toLocaleDateString('en-GB', {
-//         day: 'numeric',
-//         month: 'long',
-//         year: 'numeric',
-//     });
-//     document.getElementById('date').textContent = currentDate;
-// }
-
-function updateCurrentDay() {
-    const currentDay = new Date().toLocaleDateString('en-GB', {
-        weekday: 'long'
-    });
-    document.getElementById('day').textContent = currentDay;
 }
 
 function updateIslamicDate() {
@@ -136,7 +138,7 @@ function updateIslamicDate() {
 
 window.onload = function () {
     // updateCurrentDate();
-    updateCurrentDay()
+    // updateCurrentDay()
     updateIslamicDate()
     getPrayerTimes();
 }
