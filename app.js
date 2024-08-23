@@ -105,6 +105,7 @@ function onDateChange() {
     const dateInput = document.getElementById('dateInput').value;
     selectedDate = new Date(dateInput);
     getPrayerTimes();
+    updateIslamicDate();
 }
 
 function navigateDate(days) {
