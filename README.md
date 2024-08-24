@@ -1,2 +1,2 @@
 # Reminder App
- Reminder App
+ Prayer App

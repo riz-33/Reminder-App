@@ -68,11 +68,6 @@ body {
     opacity: 1 !important;
 }
 
-/* .btn:active {
-    background-color: #080808 !important;
-    color: #e2bc4f !important;
-} */
-
 .content {
     margin-top: 50px;
     text-align: center;
@@ -123,8 +118,6 @@ body {
 .table {
     border-top: 1px solid black;
     border-bottom: 1px solid black;
-    /* border-left: 1px solid black; */
-    /* border-right: 1px solid black; */
     font-weight: 300;
     margin-top: 20px;
     text-align: center;
@@ -148,5 +141,4 @@ body {
     border-bottom: 2px solid rgb(161, 28, 28);
     border-right: 2px solid rgb(161, 28, 28);
     border-left: 2px solid rgb(161, 28, 28);
-
 }

@@ -51,17 +51,13 @@ function displayPrayerTimes(timings) {
         return `${hours} : ${minutes} ${ampm}`;
     }
 
-    // Helper function to get time in a comparable format
     function getTimeComparable(time) {
         let [hours, minutes] = time.split(':');
         return parseInt(hours) * 60 + parseInt(minutes);
     }
 
-    // Get current time in comparable format
     const currentTime = new Date();
     const currentMinutes = currentTime.getHours() * 60 + currentTime.getMinutes();
-
-    // Define elements for prayer times
     const prayerTimes = {
         'fajr': timings.Fajr,
         'sunrise': timings.Sunrise,
@@ -71,32 +67,26 @@ function displayPrayerTimes(timings) {
         'isha': timings.Isha
     };
 
-    // Array to hold prayer times in a structured format
     let prayers = [];
     for (const [key, time] of Object.entries(prayerTimes)) {
         prayers.push({ id: key, time: getTimeComparable(time) });
     }
 
-    // Iterate over each prayer time to set the text content
     for (const [key, time] of Object.entries(prayerTimes)) {
         const element = document.getElementById(key);
         element.textContent = convertTo12Hour(time);
         element.parentElement.classList.remove('current-prayer'); // Reset the highlight class
     }
 
-    // Find the current prayer
     for (let i = 0; i < prayers.length; i++) {
         const currentPrayer = prayers[i];
-        const nextPrayer = prayers[i + 1] || prayers[0]; // Wrap around after Isha to Fajr
+        const nextPrayer = prayers[i + 1] || prayers[0];
 
         if (currentMinutes >= currentPrayer.time && currentMinutes < nextPrayer.time) {
-            // Highlight the current prayer
             document.getElementById(currentPrayer.id).parentElement.classList.add('current-prayer');
-            return; // Exit once the current prayer is found and highlighted
+            return;
         }
     }
-
-    // If no prayer is found (current time is before Fajr), highlight Isha as the previous prayer
     document.getElementById('isha').parentElement.classList.add('current-prayer');
 }
 
@@ -138,8 +128,6 @@ function updateIslamicDate() {
 }
 
 window.onload = function () {
-    // updateCurrentDate();
-    // updateCurrentDay()
     updateIslamicDate()
     getPrayerTimes();
 }
