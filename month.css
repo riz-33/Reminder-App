@@ -151,16 +151,15 @@ body {
 
 }
 
-@media only screen and (max-width: 576px) and (orientation: landscape) {
+@media only screen and (max-width: 576px) {
     table {
         width: 100%;
-        font-size: 10px;
-        /* Adjust font size for better visibility */
+        font-size: 15px;
     }
 
     th,
     td {
-        padding: 4px;
+        padding: 5px;
         /* Reduce padding for smaller screens */
     }
 
@@ -177,7 +176,6 @@ body {
     }
 
     tbody td {
-        /* display: flex; */
         justify-content: space-between;
         padding: 8px 0;
     }
