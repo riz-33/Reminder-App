@@ -13,7 +13,7 @@ body {
     background-color: floralwhite;
 }
 
-.bg-image {     
+.bg-image {
     background-image: url(Images/bg-image.jpg);
     position: fixed;
     z-index: -1;
@@ -29,7 +29,7 @@ body {
     filter: blur(2px);
 }
 
-.navbar{
+.navbar {
     padding: 1px;
 }
 
@@ -78,13 +78,8 @@ body {
     text-align: center;
 }
 
-.input-container{
+.input-container {
     margin-top: 20px;
-    text-align: center;
-}
-
-.table {
-    margin-top: 30px;
     text-align: center;
 }
 
@@ -92,32 +87,32 @@ body {
     font-size: medium;
 }
 
-.date{
+.date {
     font-weight: 500;
     font-size: 25px;
 }
 
-.selected-name{
+.selected-name {
     border-top: 2px solid black;
     border-bottom: 1px solid black;
     border-left: 1px solid black;
     font-weight: 800;
     font-size: large;
-    color:black !important;
+    color: black !important;
     background-color: #e2bc4f !important;
 }
 
-.selected-time{
+.selected-time {
     border-top: 2px solid black;
     border-bottom: 1px solid black;
     border-right: 1px solid black;
     font-size: large;
     font-weight: 800;
-    color:black !important;
+    color: black !important;
     background-color: #e2bc4f !important;
 }
 
-.arrow{
+.arrow {
     border: none;
     font-size: 25px;
     margin-left: 10px;
@@ -126,21 +121,23 @@ body {
     background-color: transparent;
 }
 
-.table{
+.table {
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     border-left: 1px solid black;
     border-right: 1px solid black;
     font-weight: 300;
-    border-radius: 50%;
+    margin-top: 20px;
+    text-align: center;
+    padding: 0px;
 }
 
-.dateInput{
+.dateInput {
     border-radius: 50px;
     text-align: center;
 }
 
-.input-container{
+.input-container {
     font-weight: 600;
 }
 
@@ -156,22 +153,6 @@ body {
 
 }
 
-#calendar {
-  margin-top: 50px;  
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  #days {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-  }
-  
-  .day {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: center;
-  }
-  
+@media only screen and (max-width: 767px) and (orientation: landscape) {
+    
+}

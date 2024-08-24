@@ -27,45 +27,34 @@
         </div>
     </nav>
 
-    <div id="calendar">
-        <div id="nav">
+    <div class="calendar">
+        <div class="content">
             <button class="arrow" onclick="previousMonth()"><i class="fa-solid fa-circle-chevron-left"></i></button>
             <span class="date" id="month">No date selected</span>
             <button class="arrow" onclick="nextMonth()"><i class="fa-solid fa-circle-chevron-right"></i></button>
         </div>
 
-    <div class="content row">
-        <div class="col-md-1 col-lg-1"></div>
-        <div class="table-div col-12 col-sm-10 col-md-10 col-lg-10">
-            <table class="table" id="table">
-                <!-- <tr class="heading">
-                    <th>Date</th>
-                    <th>Fajr</th>
-                    <th>Sunrise</th>
-                    <th>Zuhr</th>
-                    <th>Asr</th>
-                    <th>Maghrib</th>
-                    <th>Isha</th>
-                </tr>
-                <tr>
-                    <td>01-01-2024</td>
-                    <td>04 : 50 AM</td>
-                    <td>06 : 09 AM</td>
-                    <td>12 : 35 PM</td>
-                    <td>05 : 09 PM</td>
-                    <td>07 : 00 PM</td>
-                    <td>08 : 19 PM</td>
-                </tr> -->
-            </table>
+        <div class="row">
+            <div class="col-md-1 col-lg-1"></div>
+            <div class="table-div col-12 col-sm-10 col-md-10 col-lg-10">
+                <table class="table" id="namaz-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Fajr</th>
+                            <th>Dhuhr</th>
+                            <th>Asr</th>
+                            <th>Maghrib</th>
+                            <th>Isha</th>
+                        </tr>
+                    </thead>
+                    <tbody id="namaz-tbody">
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-1 col-lg-1"></div>
         </div>
-        <div class="col-md-1 col-lg-1"></div>
     </div>
-
-        <div id="days"></div>
-    </div>
-
-
-
 
     <script src="month.js"></script>
 </body>
